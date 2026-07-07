@@ -101,4 +101,9 @@ el.typeChips.forEach(c => c.addEventListener('click', () => {
 }));
 el.roll.addEventListener('click', roll);
 
+// In the Capacitor APK, enable the status-bar spacing in CSS.
+if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
+  document.body.classList.add('capacitor');
+}
+
 quietRoll();   // initial state

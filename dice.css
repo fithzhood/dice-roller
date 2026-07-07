@@ -46,6 +46,11 @@ body {
   border-bottom: 1px solid var(--border);
 }
 .app-header h1 { margin: 0; font-size: 18px; font-weight: 600; }
+/* In the Capacitor APK the content is edge-to-edge (under the Android status
+   bar); push the header down. Only applies inside the app. */
+body.capacitor .app-header {
+  padding-top: calc(max(env(safe-area-inset-top, 0px), 24px) + 8px);
+}
 
 /* ---------- Stage (dice + total) ---------- */
 .stage {
