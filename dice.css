@@ -1,0 +1,155 @@
+/* Lancia Dadi — mobile-first, dark, single screen */
+
+:root {
+  --bg: #121316;
+  --panel: #1c1e23;
+  --panel-2: #262930;
+  --text: #eef0f4;
+  --muted: #9aa0ac;
+  --accent: #5b8cff;
+  --accent-press: #3f6fe0;
+  --border: #33373f;
+  --die-face: #f4f6fb;
+  --die-pip: #1a1c22;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100svh;
+}
+
+.app-header {
+  flex: none;
+  text-align: center;
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.app-header h1 { margin: 0; font-size: 18px; font-weight: 600; }
+
+/* ---------- Stage (dice + total) ---------- */
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 16px;
+}
+.dice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+.die {
+  width: 74px;
+  height: 74px;
+  background: var(--die-face);
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.45), inset 0 -3px 0 rgba(0,0,0,0.08);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 11px;
+  gap: 3px;
+}
+.die.rolling { animation: tumble 0.18s ease-in-out infinite; }
+@keyframes tumble {
+  0%   { transform: rotate(-7deg) translateY(0); }
+  50%  { transform: rotate(6deg) translateY(-6px); }
+  100% { transform: rotate(-7deg) translateY(0); }
+}
+
+/* pip cell */
+.pip { display: flex; align-items: center; justify-content: center; }
+.pip::after {
+  content: "";
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--die-pip);
+}
+.pip.off::after { background: transparent; }
+
+/* numeric face (non-d6) */
+.die.num {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--die-pip);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.total {
+  font-size: 20px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.total b { color: var(--accent); font-size: 24px; }
+
+/* ---------- Panel / controls ---------- */
+.panel {
+  flex: none;
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+  padding: 14px 14px calc(14px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.row { display: flex; flex-direction: column; gap: 8px; }
+.lbl { font-size: 13px; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  flex: 1;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.roll-btn {
+  min-height: 56px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.roll-btn:active { background: var(--accent-press); }
+.roll-btn:disabled { opacity: 0.6; }

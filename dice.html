@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <title>Lancia Dadi</title>
+  <link rel="stylesheet" href="dice.css">
+</head>
+<body>
+  <header class="app-header"><h1>🎲 Lancia Dadi</h1></header>
+
+  <main class="stage">
+    <div id="dice" class="dice"></div>
+    <div id="total" class="total">Totale <b>—</b></div>
+  </main>
+
+  <section class="panel">
+    <div class="row">
+      <span class="lbl">Numero di dadi</span>
+      <div class="chips" id="count-chips">
+        <button class="chip" data-count="1">1</button>
+        <button class="chip active" data-count="2">2</button>
+        <button class="chip" data-count="3">3</button>
+        <button class="chip" data-count="4">4</button>
+        <button class="chip" data-count="5">5</button>
+        <button class="chip" data-count="6">6</button>
+      </div>
+    </div>
+    <div class="row">
+      <span class="lbl">Tipo di dado</span>
+      <div class="chips" id="type-chips">
+        <button class="chip" data-sides="4">d4</button>
+        <button class="chip active" data-sides="6">d6</button>
+        <button class="chip" data-sides="8">d8</button>
+        <button class="chip" data-sides="10">d10</button>
+        <button class="chip" data-sides="12">d12</button>
+        <button class="chip" data-sides="20">d20</button>
+      </div>
+    </div>
+    <button id="roll" class="roll-btn">Lancia</button>
+  </section>
+
+  <script src="dice.js"></script>
+</body>
+</html>
